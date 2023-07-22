@@ -20,7 +20,6 @@ import { InterceptorService } from './interceptors/interceptor.service';
   declarations: [
     AppComponent,
     LoginComponent,
-    DashboardComponent
   ],
   imports: [
     BrowserModule,
