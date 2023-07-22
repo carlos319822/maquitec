@@ -13,7 +13,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginComponent } from './components/login/login.component';
 import { SharedModule } from './components/shared/app-routing.module';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { InterceptorService } from './interceptors/interceptor.service';
 
 @NgModule({
@@ -26,7 +26,9 @@ import { InterceptorService } from './interceptors/interceptor.service';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    SharedModule
+    SharedModule,
+    HttpClientModule,
+    
   ],
   providers: [
     {

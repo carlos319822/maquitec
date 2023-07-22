@@ -1,36 +1,32 @@
 import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, Observable, throwError } from 'rxjs';
+import { Router } from '@angular/router';
+import { UserService } from '../services/user.service';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class InterceptorService implements HttpInterceptor {
 
-  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    
-    let auth_token = localStorage.getItem('token_value');
-    let bear = 'Bearer '+auth_token
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Authorization': bear
-    })
+  constructor(public miServicioUser: UserService, private router:
+    Router) {}
+    intercept(request: HttpRequest<unknown>, next: HttpHandler): 
+    Observable<HttpEvent<any>> {
+      if (this.miServicioUser.usuarioSesionActiva){
+        request = request.clone({
+          setHeaders: {
+            Authorization: `Bearer
+            ${this.miServicioUser.usuarioSesionActiva.token}`
 
-    // const auth_token = localStorage.getItem('token_value');
-    // const headers = new HttpHeaders({
-    //   'Authorization': 'bearer '+auth_token
-    // });
-    
-    const reqClone = req.clone({headers: headers});
-
-    return next.handle(reqClone).pipe(
-      catchError(this.manejarError)
-    );
-  }
-
-  manejarError(error:HttpErrorResponse){
-    console.log('sucedio un error');
-    console.warn(error);
-    return throwError(error);
-  }
+          }
+        });
+      }
+        return next.handle(request).pipe(
+          catchError((err: HttpErrorResponse) => {
+            if (err.status === 401){
+              this.router.navigateByUrl('./dashboard');
+            }
+            return throwError(err);
+          })
+        );
+    }
 }
