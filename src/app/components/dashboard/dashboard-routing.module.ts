@@ -9,8 +9,8 @@ const routes: Routes = [
   {path:'',component:DashboardComponent,
   children:[ 
     {path: '', component : InicioComponent},
-    { path: 'hdvpersona',component:HdvpersonaComponent},
-    { path: 'publicarpersona',component:PublicarpersonaComponent}
+    { path: 'postulados',component:HdvpersonaComponent},
+    { path: 'postularse',component:PublicarpersonaComponent}
   ]}
 ];
 

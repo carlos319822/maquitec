@@ -2,12 +2,12 @@
     <span>MAQUITEC</span>
     
     <span class="example-spacer"></span>
-    <button mat-button >INICIO</button>
-    <button mat-button >HDV</button>
-    <button mat-button >POSTULACION</button>
+    <button mat-button routerLink="/dashboard" >INICIO</button>
+    <button mat-button routerLink="/dashboard/postulados" >HDV</button>
+    <button mat-button routerLink="/dashboard/postularse" >POSTULACION</button>
     <span class="example-spacer"></span>
 
-    <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+    <button routerLink="/logout" mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
         <mat-icon>logout</mat-icon>
       </button>
     

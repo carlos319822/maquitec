@@ -1,0 +1,15 @@
+[
+    {
+        "nombre": "INICIO",
+        "redirect": "/dashboard"
+    },
+    {
+        "nombre": "HDV",
+        "redirect": "/dashboard/postulados"
+    },
+    {
+        "nombre": "POSTULACION",
+        "redirect": "/dashboard/postularse"
+    }
+    
+]
