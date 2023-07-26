@@ -1,8 +1,9 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Persona } from 'src/app/interfaces/persona';
+import { PersonaService } from 'src/app/services/persona.service';
 
 
 
@@ -13,24 +14,31 @@ import { Persona } from 'src/app/interfaces/persona';
   templateUrl: './hdvpersona.component.html',
   styleUrls: ['./hdvpersona.component.css']
 })
-export class HdvpersonaComponent {
+export class HdvpersonaComponent implements OnInit {
+
+  listPersonas: Persona[] =[];
+
+  displayedColumns: string[] = ['nombre', 'cargo', 'correo', 'celular','ciudad','fecha','HdV'];
+
+  dataSource!: MatTableDataSource<any>;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
  
-  listPersona: Persona[] = [
-    {nombre:'Carlos Carvajal',cargo:'Mecanico',correo:'carlos319822@gmail.com',celular:'3043062587',ciudad:'Timbio',fecha:'19/12/2012',HdV:''},
-    {nombre:'Angela Castillo',cargo:'Asesor',correo:'angela@gmail.com',celular:'3125879817',ciudad:'Popayan',fecha:'20/11/2012',HdV:''},
-    {nombre:'Andres Andrade',cargo:'Administrador',correo:'andres@gmail.com',celular:'3125897845',ciudad:'Timbio',fecha:'20/12/2012',HdV:''},
-    //{nombre:'',cargo:'',correo:'',celular:'',ciudad:'',fecha:'',HdV:''},
-    
-    
-  ];
+  constructor(private personaService: PersonaService){}
 
-  displayedColumns: string[] = ['nombre', 'cargo', 'correo', 'celular','ciudad','fecha','HdV'];
+  ngOnInit(): void {
+    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
+    //Add 'implements OnInit' to the class.
+    this.cargarPersonas();
+    
+  }
 
-  dataSource = new MatTableDataSource(this.listPersona);
+  cargarPersonas(){
+    this.listPersonas = this.personaService.getPersona();
+    this.dataSource = new MatTableDataSource(this.listPersonas);
+  }
 
   ngAfterViewInit(): void {
     //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
