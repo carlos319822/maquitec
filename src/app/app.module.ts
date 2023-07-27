@@ -15,11 +15,13 @@ import { SharedModule } from './components/shared/app-routing.module';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { InterceptorService } from './interceptors/interceptor.service';
+import { RegisterComponent } from './components/register/register.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,
