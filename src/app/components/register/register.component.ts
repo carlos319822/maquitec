@@ -18,6 +18,8 @@ export class RegisterComponent {
   }
   form: FormGroup;
 
+  loading = false;
+
   constructor(private fb: FormBuilder,private _snackBar: MatSnackBar, private router: Router, private miServicioUser: UserService){
     this.form = this.fb.group({
       seudonimo: ['',Validators.required],
@@ -30,6 +32,23 @@ export class RegisterComponent {
   }
   register (){
 
+    console.log(this.form);
+    const seudonimo = this.form.value.seudonimo;
+    const correo = this.form.value.correo;
+    const contrasena = this.form.value.contrasena;
+
+    if(seudonimo == 'carlos319822' &&correo == 'carlos319822@gmail.com' && contrasena == 'carvajal'){
+      //Redirecciona,os al dashboard
+      this.Loading();
+    }
+
+  }
+
+  Loading(){
+    this.loading = true
+    setTimeout(() => {
+      this.router.navigate(['login']);
+    }, 1500);
   }
 
 }
