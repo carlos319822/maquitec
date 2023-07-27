@@ -1,1 +1,114 @@
-<p>crear-persona works!</p>
+<div class="container">
+    <br>
+    <mat-toolbar>
+        <span class="example-spacer"></span>
+        <span>REGISTRO DE HOJA DE VIDA</span>
+        <span class="example-spacer"></span>
+    </mat-toolbar>
+</div>
+
+<div class="modalc" #modalBack>
+    <form>
+
+        <div class="general">
+            <div class="fondo">
+                <div class="ex">
+                    <br>
+                    <mat-form-field class="ancho">
+                        <mat-label>ESTADO CIVIL</mat-label>
+                        <mat-select>
+                            <mat-option *ngFor="let item of estadoc" [value]="item">
+                                {{item}}
+                            </mat-option>
+                        </mat-select> 
+                    </mat-form-field>
+                    <br>
+                    <mat-form-field>
+                        <mat-label>ESTUDIO</mat-label>
+                        <mat-select>
+                            <mat-option *ngFor="let item of estudio" [value]="item">
+                                {{item}}
+                            </mat-option>
+                        </mat-select> 
+                    </mat-form-field>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <mat-form-field>
+                        <mat-label>ESTADO</mat-label>
+                        <mat-select>
+                            <mat-option *ngFor="let item of estado" [value]="item">
+                                {{item}}
+                            </mat-option>
+                        </mat-select> 
+                    </mat-form-field>
+                    <br>
+                    <mat-form-field>
+                    <mat-label>CARGO ASPIRADO</mat-label>
+                        <mat-select>
+                            <mat-option *ngFor="let item of cargo" [value]="item">
+                                {{item}}
+                            </mat-option>
+                        </mat-select> 
+                    </mat-form-field>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <mat-form-field>
+                        <mat-label>EXPERIENCIA EN EL CARGO</mat-label>
+                            <mat-select>
+                                <mat-option *ngFor="let item of experiencia" [value]="item">
+                                    {{item}}
+                                </mat-option>
+                            </mat-select> 
+                        </mat-form-field>
+                </div>
+
+            </div>
+            <div class="cent">
+                <div class="da">
+                    <br>
+                    <mat-form-field class="example-full-width ancho">
+                        <mat-label>NOMBRES</mat-label>
+                        <input matInput placeholder="nombre">
+                    </mat-form-field>
+                    <br><br>
+                    <mat-form-field class="example-full-width ancho">
+                        <mat-label>APELLIDOS</mat-label>
+                        <input matInput placeholder="apellido">
+                    </mat-form-field>
+                    <br><br>
+                    <mat-form-field class="example-full-width ancho">
+                        <mat-label>CORREO</mat-label>
+                        <input matInput placeholder="example@gmail.com">
+                    </mat-form-field>
+                    <br><br>
+                    <mat-form-field class="example-full-width ancho">
+                        <mat-label>TELEFONO</mat-label>
+                        <input matInput placeholder="3108997575">
+                    </mat-form-field>
+                    <br><br>
+                    <mat-form-field class="example-full-width ancho">
+                        <mat-label>DIRECCION</mat-label>
+                        <input matInput placeholder="calle 18 # 00-00">
+                    </mat-form-field>
+                    <br><br>
+                    <mat-form-field class="example-full-width ancho">
+                        <mat-label>CIUDAD</mat-label>
+                        <input matInput placeholder="Popayán">
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <div class="hoja">
+                <div class="doc">
+                    <br>
+                    <br><br><br><br><br><br>
+                    <button class="add" mat-raised-button>
+                        <img class="img" src="../../../../../assets/img/plan-de-estudios.png">
+                    </button>
+                    <br>
+                </div>
+            </div>
+
+        </div>
+
+    </form>
+
+</div>

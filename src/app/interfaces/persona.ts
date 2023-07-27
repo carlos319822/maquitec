@@ -6,4 +6,6 @@ export interface Persona {
   ciudad: string;
   fecha: string;
   HdV:string;
+
+  estadocivil:string;
 }
