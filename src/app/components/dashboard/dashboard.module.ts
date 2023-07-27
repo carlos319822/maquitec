@@ -8,8 +8,8 @@ import { SharedModule } from '../shared/app-routing.module';
 import { DashboardComponent } from './dashboard.component';
 import { InicioComponent } from './inicio/inicio.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { CrearPersonaComponent } from './personas/crear-persona/crear-persona.component';
 import { HdvpersonaComponent } from './hdvpersona/hdvpersona.component';
-import { PublicarpersonaComponent } from './publicarpersona/publicarpersona.component';
 
 
 @NgModule({
@@ -18,7 +18,7 @@ import { PublicarpersonaComponent } from './publicarpersona/publicarpersona.comp
     InicioComponent,
     NavbarComponent,
     HdvpersonaComponent,
-    PublicarpersonaComponent
+    CrearPersonaComponent,
   ],
   imports: [
     CommonModule,

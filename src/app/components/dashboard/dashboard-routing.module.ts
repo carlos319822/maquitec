@@ -3,14 +3,14 @@ import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './dashboard.component';
 import { InicioComponent } from './inicio/inicio.component';
 import { HdvpersonaComponent } from './hdvpersona/hdvpersona.component';
-import { PublicarpersonaComponent } from './publicarpersona/publicarpersona.component';
+import { CrearPersonaComponent } from './personas/crear-persona/crear-persona.component';
 
 const routes: Routes = [
   {path:'',component:DashboardComponent,
   children:[ 
     {path: '', component : InicioComponent},
     { path: 'postulados',component:HdvpersonaComponent},
-    { path: 'postularse',component:PublicarpersonaComponent}
+    { path: 'postularse',component:CrearPersonaComponent}
   ]}
 ];
 
