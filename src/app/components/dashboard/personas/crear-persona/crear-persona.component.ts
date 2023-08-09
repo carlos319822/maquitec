@@ -30,4 +30,8 @@ export class CrearPersonaComponent implements OnInit{
     this.archivos.push(archivoCapturado)
     console.log(event.target.files);
   }
+
+  onSubmit(){
+    
+  }
 }

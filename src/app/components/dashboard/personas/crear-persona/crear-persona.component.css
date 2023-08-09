@@ -45,3 +45,13 @@ mat-grid-tile {
 .ex{
     text-align: center;
 }
+.buton{
+    width: 100%;
+    border-radius: 10%;
+    float: left;
+    text-align: center;
+}
+.env {
+    background-color: rgb(222, 112, 2);
+    color: white;
+}
