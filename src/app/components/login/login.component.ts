@@ -34,7 +34,19 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
     
   }
-  login(){
+  login():void{
+
+    this.miServicioUser.login(this.loginData).subscribe((data:any) => {
+      console.log(data);
+
+      this.Loading();
+      this.router.navigate(['dashboard'])
+    },err => {
+      this.error();
+      this.form.reset();
+    }
+    )
+
 /**
     this.miServicioUser.login(this.loginData).subscribe((data:any) => {
 
@@ -44,7 +56,7 @@ export class LoginComponent implements OnInit {
       this.error();
       this.form.reset();
     }
-    )*/
+    )
     
     console.log(this.form);
     const correo = this.form.value.correo;
@@ -57,7 +69,7 @@ export class LoginComponent implements OnInit {
       //Mostramos un mensaje de error
       this.error();
       this.form.reset();
-    } 
+    } */
   }
   
   error() {

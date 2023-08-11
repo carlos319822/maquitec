@@ -8,7 +8,7 @@
 </div>
 
 <div class="modalc" #modalBack>
-    <form>
+    <form [formGroup]="form" (ngSubmit)="guardar()">
 
         <div class="general">
             <div class="fondo">
@@ -62,7 +62,7 @@
 
                 <div class=" buton">
                     <br><br><br><br><br><br><br><br><br><br><br><br><br>
-                    <button mat-raised-button class="env" (click)="onSubmit">Enviar </button> 
+                    <button mat-raised-button class="env">Enviar </button> 
         
                 </div>
 

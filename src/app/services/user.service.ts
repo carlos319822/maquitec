@@ -51,6 +51,15 @@ public get usuarioSesionActiva(): User {
   return this.http.post<User>(`${environment.url_gateway}/login`,
   infoUsuario);
   }
+
+  /*registra usuario */
+
+  register(infoUsuario: User): Observable<User> {
+    return this.http.post<User>(`${environment.url_usuarios}/usuarios`,
+    infoUsuario);
+    }
+
+    
   /**
   * Guarda los datos tales como el identificador
   * y token del usuario en una base de datos

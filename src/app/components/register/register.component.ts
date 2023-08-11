@@ -32,6 +32,18 @@ export class RegisterComponent {
   }
   register (){
 
+    this.miServicioUser.register(this.loginData).subscribe((data:any) => {
+      console.log(data);
+
+      this.Loading();
+      // this.router.navigate(['dashboard'])
+    },err => {
+      this.error();
+      this.form.reset();
+    }
+    ) 
+
+    /*
     console.log(this.form);
     const seudonimo = this.form.value.seudonimo;
     const correo = this.form.value.correo;
@@ -40,7 +52,7 @@ export class RegisterComponent {
     if(seudonimo == 'carlos319822' &&correo == 'carlos319822@gmail.com' && contrasena == 'carvajal'){
       //Redirecciona,os al dashboard
       this.Loading();
-    }
+    }*/
 
   }
 
@@ -49,6 +61,14 @@ export class RegisterComponent {
     setTimeout(() => {
       this.router.navigate(['login']);
     }, 1500);
+  }
+
+  error() {
+    this._snackBar.open('Opcion no valida', '', {
+      duration: 5000,
+      horizontalPosition: 'center',
+      verticalPosition: 'bottom'
+    })
   }
 
 }

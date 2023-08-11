@@ -1,11 +1,15 @@
 export interface Persona {
   nombre: string;
-  cargo: string;
+  apellidos: string;
   correo: string;
-  celular: string;
+  telefono: string;
+  direccion: string;
   ciudad: string;
+  estado_civil: string;
+  estudio : string;
+  estado : string;
+  cargo_aspirado : string;
+  experiencia_laboral: string;
   fecha: string;
   HdV:string;
-
-  estadocivil:string;
 }
