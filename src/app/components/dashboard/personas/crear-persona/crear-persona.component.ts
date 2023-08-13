@@ -1,7 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { Component, ElementRef, OnInit } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { Cargo } from 'src/app/interfaces/cargo';
+import { Formacion } from 'src/app/interfaces/formacion';
+import { Caras, Forma, Persona } from 'src/app/interfaces/persona';
 import { PersonaService } from 'src/app/services/persona.service';
 
 
@@ -14,6 +17,33 @@ import { PersonaService } from 'src/app/services/persona.service';
 })
 export class CrearPersonaComponent{
 
+  model: Persona ={
+    nombres: '',
+    apellidos: '',
+    correo: '',
+    telefono: '',
+    direccion: '',
+    ciudad: '',
+    estado_civil: '',
+    fecha_registro: new Date().toISOString(),
+    estudios: '',
+    estado: '',
+    cargo_aspirado: '',
+    experiencia_laboral: '',
+    Hdv: ''
+  }
+
+  modeli: Caras={
+    cargo_aspirado: '',
+    experiencia: '',
+    Hdv: ''
+  }
+
+  modelo: Forma={
+    estudios: '',
+    estado: ''
+  }
+
   loginData = {
     nombre:'',
     apellidos:'',
@@ -22,50 +52,47 @@ export class CrearPersonaComponent{
     direccion: '',
     ciudad: '',
     estado_civil:'',
-    estudio :'', 
-    estado : '',
-    cargo_aspirado : '',
-    experiencia_laboral: '',
-    fecha:'',
-    HdV: '',
-  }
-  form: FormGroup;
-
-  constructor(private fb: FormBuilder,private _snackBar: MatSnackBar, private router: Router, private miServicio: PersonaService ){
-    this.form = this.fb.group({
-      nombre: [''],
-      apellidos: [''],
-      correo: [''],
-      telefono: [''],
-      direccion: [''],
-      ciudad: [''],
-      estado_civil: [''],
-      estudio: [''],
-      estado: [''],
-      cargo_aspirado: [''],
-      experiencia_laboral: [''],
-      fecha: [''],
-      HdV: [''],
-
-    })
+    fecha_registro: new Date().toISOString(),
   }
 
-  public archivos : any =[]
-  
-  estadoc :any[]=['Solter@','Casad@','Union Libre']
+  estadoc :any[]=['Soltero','Soltera','Casado','Casada','Union Libre']
   estudio: any[]=['Bachiller','Tecnico','Tecnologo','Profesional','Curso Basico']
   estado: any[]=[ 'Terminado','En Curso']
   cargo: any[]=['Asesor','Mecanico','Administrador','Oficios Varios']
   experiencia: any []=['06 Meses','1 Año','2 Años','Mas']
 
+  
+  
+
+  constructor(private fb: FormBuilder,private _snackBar: MatSnackBar, private router: Router, private miServicio: PersonaService ){
+    
+  }
+
+  personaform= new FormGroup({
+    nombre:new FormControl('',Validators.required),
+    apellidos: new FormControl('',Validators.required),
+    correo: new FormControl('',Validators.required), 
+    telefono: new FormControl('',Validators.required), 
+    direccion: new FormControl('',Validators.required),
+    ciudad: new FormControl('',Validators.required),
+    estado_civil:new FormControl('',Validators.required),
+    cargo_aspirado:new FormControl('',Validators.required),
+    experiencia:new FormControl('',Validators.required),
+    estudios:new FormControl('',Validators.required),
+    estado:new FormControl('',Validators.required),
+  })
+
+  public archivos : any =[]
+  
+ 
+
 
   guardar(){
 
-    this.miServicio.usuario(this.loginData).subscribe((data:any) => {
+    this.miServicio.usuario(this.model).subscribe((data:any) => {
       console.log(data);
 
       this.mensaje();
-      this.form.reset();
       // this.router.navigate(['dashboard'])
     },err => {
       this.error();

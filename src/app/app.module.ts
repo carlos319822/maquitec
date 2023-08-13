@@ -32,7 +32,7 @@ import { RegisterComponent } from './components/register/register.component';
     
   ],
   providers: [
-    /*{
+   /* {
       provide: HTTP_INTERCEPTORS,
       useClass: InterceptorService,
       multi : true

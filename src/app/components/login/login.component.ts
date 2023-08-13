@@ -17,10 +17,13 @@ import Swal from 'sweetalert2';
 export class LoginComponent implements OnInit {
 
 
-  loginData = {
+  /*loginData = {
     correo:'',
     contrasena:''
-  }
+  }*/
+  correo:string="";
+  contrasena:string="";
+
   form: FormGroup;
 
   loading = false;
@@ -36,6 +39,20 @@ export class LoginComponent implements OnInit {
   }
   login():void{
 
+    console.log("aqui "+this.correo+" contraseña "+this.contrasena)
+    let elUsuario:User={
+      correo:this.correo,
+      contrasena:this.contrasena
+    }
+    this.miServicioUser.login(elUsuario).subscribe(data =>{
+      this.Loading();
+      this.miServicioUser.guardarDatosSesion(data);
+    },err => {
+      this.error();
+      this.form.reset();
+    }
+    )
+/**
     this.miServicioUser.login(this.loginData).subscribe((data:any) => {
       console.log(data);
 
@@ -47,7 +64,7 @@ export class LoginComponent implements OnInit {
     }
     )
 
-/**
+
     this.miServicioUser.login(this.loginData).subscribe((data:any) => {
 
       this.Loading();

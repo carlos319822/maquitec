@@ -8,7 +8,7 @@
 </div>
 
 <div class="modalc" #modalBack>
-    <form [formGroup]="form" (ngSubmit)="guardar()">
+    <form (ngSubmit)="guardar()">
 
         <div class="general">
             <div class="fondo">
@@ -16,7 +16,7 @@
                     <br>
                     <mat-form-field class="ancho">
                         <mat-label>ESTADO CIVIL</mat-label>
-                        <mat-select>
+                        <mat-select class="form-control" id="nombre" >
                             <mat-option *ngFor="let item of estadoc" [value]="item">
                                 {{item}}
                             </mat-option>

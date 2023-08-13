@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { Router } from '@angular/router';
 import { Persona } from 'src/app/interfaces/persona';
 import { PersonaService } from 'src/app/services/persona.service';
 
@@ -17,32 +18,52 @@ import { PersonaService } from 'src/app/services/persona.service';
 export class HdvpersonaComponent implements OnInit {
 
   listPersonas: Persona[] =[];
+  personas : Persona[] = [];
 
-  displayedColumns: string[] = ['nombre', 'cargo', 'correo', 'celular','ciudad','fecha','HdV'];
+  displayedColumns: string[] = ['nombres', 'cargo_aspirado', 'correo', 'telefono','ciudad','fecha_registro','HdV'];
 
-  dataSource!: MatTableDataSource<any>;
+  dataSource:any;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
+  model: Persona={
+    nombres: '',
+    apellidos: '',
+    correo: '',
+    telefono: '',
+    direccion: '',
+    ciudad: '',
+    estado_civil: '',
+    fecha_registro: '',
+    estudios: '',
+    estado: '',
+    cargo_aspirado: '',
+    experiencia_laboral: '',
+    Hdv: ''
+  }
  
-  constructor(private personaService: PersonaService){}
+  constructor(private personaService: PersonaService, private router:Router){}
 
   ngOnInit(): void {
-    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
-    //Add 'implements OnInit' to the class.
     this.cargarPersonas();
+    this.listar();
     
   }
 
+  listar():void{
+    console.log(this.personas)
+    this.personaService.listar().subscribe((data:any) => {
+      this.dataSource=new MatTableDataSource<Persona>(data.result as Persona[]);
+      console.log(data);
+    });
+  }
+
   cargarPersonas(){
-    this.listPersonas = this.personaService.getPersona();
     this.dataSource = new MatTableDataSource(this.listPersonas);
   }
 
   ngAfterViewInit(): void {
-    //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
-    //Add 'implements AfterViewInit' to the class.
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }

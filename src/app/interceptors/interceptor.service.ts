@@ -3,14 +3,14 @@ import { Injectable } from '@angular/core';
 import { catchError, Observable, throwError } from 'rxjs';
 import { Router } from '@angular/router';
 import { UserService } from '../services/user.service';
+import Swal from 'sweetalert2';
 
 @Injectable()
 export class InterceptorService implements HttpInterceptor {
 
-  constructor(public miServicioUser: UserService, private router:
-    Router) {}
-    intercept(request: HttpRequest<unknown>, next: HttpHandler): 
-    Observable<HttpEvent<any>> {
+  constructor(public miServicioUser: UserService, private router: Router) {}
+
+    intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<any>> {
       if (this.miServicioUser.usuarioSesionActiva){
         request = request.clone({
           setHeaders: {
@@ -23,7 +23,7 @@ export class InterceptorService implements HttpInterceptor {
         return next.handle(request).pipe(
           catchError((err: HttpErrorResponse) => {
             if (err.status === 401){
-              this.router.navigateByUrl('./dashboard');
+              this.router.navigateByUrl('/dashboard');
             }
             return throwError(err);
           })
