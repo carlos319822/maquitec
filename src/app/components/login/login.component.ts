@@ -8,6 +8,7 @@ import { User } from 'src/app/interfaces/user';
 import { Subscription, timeout } from 'rxjs';
 import { Response } from '../../interfaces/response'
 import Swal from 'sweetalert2';
+import { AuthStatus } from 'src/app/interfaces/authenticacion';
 
 @Component({
   selector: 'app-login',
@@ -47,6 +48,7 @@ export class LoginComponent implements OnInit {
     this.miServicioUser.login(elUsuario).subscribe(data =>{
       this.Loading();
       this.miServicioUser.guardarDatosSesion(data);
+      this.miServicioUser._authStatus.set( AuthStatus.authenticated );
     },err => {
       this.error();
       this.form.reset();

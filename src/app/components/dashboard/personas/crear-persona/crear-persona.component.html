@@ -8,7 +8,7 @@
 </div>
 
 <div class="modalc" #modalBack>
-    <form (ngSubmit)="guardar()">
+    <form [formGroup]="form" (ngSubmit)="guardar()">
 
         <div class="general">
             <div class="fondo">
@@ -16,54 +16,53 @@
                     <br>
                     <mat-form-field class="ancho">
                         <mat-label>ESTADO CIVIL</mat-label>
-                        <mat-select class="form-control" id="nombre" >
+                        <mat-select class="form-control" id="nombre" formControlName="estado_civil">
                             <mat-option *ngFor="let item of estadoc" [value]="item">
                                 {{item}}
                             </mat-option>
-                        </mat-select> 
+                        </mat-select>
                     </mat-form-field>
                     <br>
                     <mat-form-field>
                         <mat-label>ESTUDIO</mat-label>
-                        <mat-select>
+                        <mat-select formControlName="estudios">
                             <mat-option *ngFor="let item of estudio" [value]="item">
                                 {{item}}
                             </mat-option>
-                        </mat-select> 
+                        </mat-select>
                     </mat-form-field>
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <mat-form-field>
                         <mat-label>ESTADO</mat-label>
-                        <mat-select>
+                        <mat-select formControlName="estado">
                             <mat-option *ngFor="let item of estado" [value]="item">
                                 {{item}}
                             </mat-option>
-                        </mat-select> 
+                        </mat-select>
                     </mat-form-field>
                     <br>
                     <mat-form-field>
-                    <mat-label>CARGO ASPIRADO</mat-label>
-                        <mat-select>
+                        <mat-label>CARGO ASPIRADO</mat-label>
+                        <mat-select formControlName="cargo_aspirado">
                             <mat-option *ngFor="let item of cargo" [value]="item">
                                 {{item}}
                             </mat-option>
-                        </mat-select> 
+                        </mat-select>
                     </mat-form-field>
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <mat-form-field>
                         <mat-label>EXPERIENCIA EN EL CARGO</mat-label>
-                            <mat-select>
-                                <mat-option *ngFor="let item of experiencia" [value]="item">
-                                    {{item}}
-                                </mat-option>
-                            </mat-select> 
-                        </mat-form-field>
+                        <mat-select formControlName="experiencia">
+                            <mat-option *ngFor="let item of experiencia" [value]="item">
+                                {{item}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
                 </div>
 
                 <div class=" buton">
                     <br><br><br><br><br><br><br><br><br><br><br><br><br>
-                    <button mat-raised-button class="env">Enviar </button> 
-        
+                    <button type="submit" mat-raised-button class="env">Enviar </button>
                 </div>
 
             </div>
@@ -72,32 +71,32 @@
                     <br>
                     <mat-form-field class="example-full-width ancho">
                         <mat-label>NOMBRES</mat-label>
-                        <input matInput placeholder="nombre">
+                        <input matInput placeholder="nombre" formControlName="nombre">
                     </mat-form-field>
                     <br><br>
                     <mat-form-field class="example-full-width ancho">
                         <mat-label>APELLIDOS</mat-label>
-                        <input matInput placeholder="apellido">
+                        <input matInput placeholder="apellido" formControlName="apellidos">
                     </mat-form-field>
                     <br><br>
                     <mat-form-field class="example-full-width ancho">
                         <mat-label>CORREO</mat-label>
-                        <input matInput placeholder="example@gmail.com">
+                        <input matInput placeholder="example@gmail.com" formControlName="correo">
                     </mat-form-field>
                     <br><br>
                     <mat-form-field class="example-full-width ancho">
                         <mat-label>TELEFONO</mat-label>
-                        <input matInput placeholder="3108997575">
+                        <input matInput placeholder="3108997575" formControlName="telefono">
                     </mat-form-field>
                     <br><br>
                     <mat-form-field class="example-full-width ancho">
                         <mat-label>DIRECCION</mat-label>
-                        <input matInput placeholder="calle 18 # 00-00">
+                        <input matInput placeholder="calle 18 # 00-00" formControlName="direccion">
                     </mat-form-field>
                     <br><br>
                     <mat-form-field class="example-full-width ancho">
                         <mat-label>CIUDAD</mat-label>
-                        <input matInput placeholder="Popayán">
+                        <input matInput placeholder="Popayán" formControlName="ciudad">
                     </mat-form-field>
                 </div>
             </div>
@@ -106,17 +105,11 @@
                 <div class="doc">
                     <br>
                     <br><br><br><br><br><br>
-                        <img class="img" src="../../../../../assets/img/plan-de-estudios.png">
-                        <input (change)="capturarFile($event)" type="file">
+                    <img class="img" src="../../../../../assets/img/plan-de-estudios.png">
+                    <input (change)="capturarFile($event)" type="file" formControlName="curriculum">
                     <br>
                 </div>
             </div>
-
-            
         </div>
-
-        
-
     </form>
-
 </div>
