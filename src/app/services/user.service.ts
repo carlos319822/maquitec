@@ -31,6 +31,7 @@ public get usuarioSesionActiva(): User {
   }
   
   login(infoUsuario: User): Observable<User> {
+    
   return this.http.post<User>(`${environment.url_gateway}/login`,
   infoUsuario);
   }

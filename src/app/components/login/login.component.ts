@@ -46,9 +46,12 @@ export class LoginComponent implements OnInit {
     }
     this.miServicioUser.login(elUsuario).subscribe(data =>{
       this.Loading();
+      
       this.miServicioUser.guardarDatosSesion(data);
     },err => {
+
       this.error();
+      console.log(err);
       this.form.reset();
     }
     )

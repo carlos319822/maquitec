@@ -20,7 +20,7 @@ export class HdvpersonaComponent implements OnInit {
   listPersonas: Persona[] =[];
   personas : Persona[] = [];
 
-  displayedColumns: string[] = ['nombres', 'cargo_aspirado', 'correo', 'telefono','ciudad','fecha_registro','HdV'];
+  contentColumns: string[] = ['nombres', 'cargo_aspirado', 'correo', 'telefono','ciudad','fecha_registro','HdV'];
 
   dataSource:any;
 
