@@ -1,5 +1,5 @@
 import { Component, ElementRef, OnInit } from '@angular/core';
-import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { Cargo } from 'src/app/interfaces/cargo';
@@ -15,21 +15,10 @@ import { PersonaService } from 'src/app/services/persona.service';
   templateUrl: './crear-persona.component.html',
   styleUrls: ['./crear-persona.component.css']
 })
-export class CrearPersonaComponent {
+export class CrearPersonaComponent{
 
-  modeli: Caras = {
-    cargo_aspirado: '',
-    experiencia: '',
-    Hdv: ''
-  }
-
-  modelo: Forma = {
-    estudios: '',
-    estado: ''
-  }
-
-  loginData = {
-    nombre: '',
+  model: Persona ={
+    nombres: '',
     apellidos: '',
     correo: '',
     telefono: '',
@@ -37,87 +26,97 @@ export class CrearPersonaComponent {
     ciudad: '',
     estado_civil: '',
     fecha_registro: new Date().toISOString(),
+    estudios: '',
+    estado: '',
+    cargo_aspirado: '',
+    experiencia_laboral: '',
+    Hdv: ''
   }
 
-  estadoc: any[] = ['Soltero', 'Soltera', 'Casado', 'Casada', 'Union Libre']
-  estudio: any[] = ['Bachiller', 'Tecnico', 'Tecnologo', 'Profesional', 'Curso Basico']
-  estado: any[] = ['Terminado', 'En Curso']
-  cargo: any[] = ['Asesor', 'Mecanico', 'Administrador', 'Oficios Varios']
-  experiencia: any[] = ['06 Meses', '1 Año', '2 Años', 'Mas']
+  modeli: Caras={
+    cargo_aspirado: '',
+    experiencia: '',
+    Hdv: ''
+  }
 
-  form!: FormGroup;
-  archivos: File[] = [];
+  modelo: Forma={
+    estudios: '',
+    estado: ''
+  }
 
-  constructor(private fb: FormBuilder, private _snackBar: MatSnackBar, private router: Router, private miServicio: PersonaService) {
-    this.form = this.fb.group({
-      nombre: ['', [Validators.required]],
-      apellidos: ['', [Validators.required]],
-      correo: ['', [Validators.required]],
-      telefono: ['', [Validators.required]],
-      direccion: ['', [Validators.required]],
-      ciudad: ['', [Validators.required]],
-      estado_civil: ['', [Validators.required]],
-      cargo_aspirado: ['', [Validators.required]],
-      experiencia: ['', [Validators.required]],
-      estudios: ['', [Validators.required]],
-      estado: ['', [Validators.required]],
-      fecha_registro: new Date().toISOString(),
-      id_usuario: JSON.parse(localStorage.getItem('sesion') || '{}')._id || '[SIN ID]',
-      curriculum: ['', [Validators.required, this.validadorArchivo(3 * 1024 * 1024)]]
-    });
-  };
+  loginData = {
+    nombre:'',
+    apellidos:'',
+    correo: '',
+    telefono:'',
+    direccion: '',
+    ciudad: '',
+    estado_civil:'',
+    fecha_registro: new Date().toISOString(),
+  }
 
-  validadorArchivo(maxSize: number): ValidatorFn {
-    return (control: AbstractControl): { [key: string]: any } | null => {
-      const archivo = control.value;
-      const esDemasiadoGrande = archivo && archivo.size > maxSize;
-      return esDemasiadoGrande ? { 'tamanoArchivo': { value: control.value } } : null;
-    };
-  };
+  estadoc :any[]=['Soltero','Soltera','Casado','Casada','Union Libre']
+  estudio: any[]=['Bachiller','Tecnico','Tecnologo','Profesional','Curso Basico']
+  estado: any[]=[ 'Terminado','En Curso']
+  cargo: any[]=['Asesor','Mecanico','Administrador','Oficios Varios']
+  experiencia: any []=['06 Meses','1 Año','2 Años','Mas']
 
-  guardar() {
-    this.miServicio.usuario(this.form.value).subscribe({
-      next: (data: any) => {
-        this._snackBar.open("Postulacion exitosa")
-        this.router.navigate(['/dashboard/postulados'])
-      },
-      error: err => {
-        this.error();
-      },
-      complete() {
+  
+  
 
-      },
-    })
-  };
+  constructor(private fb: FormBuilder,private _snackBar: MatSnackBar, private router: Router, private miServicio: PersonaService ){
+    
+  }
 
-  mensaje() {
+  personaform= new FormGroup({
+    nombre:new FormControl('',Validators.required),
+    apellidos: new FormControl('',Validators.required),
+    correo: new FormControl('',Validators.required), 
+    telefono: new FormControl('',Validators.required), 
+    direccion: new FormControl('',Validators.required),
+    ciudad: new FormControl('',Validators.required),
+    estado_civil:new FormControl('',Validators.required),
+    cargo_aspirado:new FormControl('',Validators.required),
+    experiencia:new FormControl('',Validators.required),
+    estudios:new FormControl('',Validators.required),
+    estado:new FormControl('',Validators.required),
+  })
+
+  public archivos : any =[]
+  
+ 
+
+
+  guardar(){
+
+    this.miServicio.usuario(this.model).subscribe((data:any) => {
+      console.log(data);
+
+      this.mensaje();
+      // this.router.navigate(['dashboard'])
+    },err => {
+      this.error();
+      
+    }
+    )   
+  }
+
+  mensaje(){
     setTimeout(() => {
       this._snackBar.open('Usuario guardado', '', {
         duration: 5000,
         horizontalPosition: 'center',
         verticalPosition: 'bottom'
       })
-
+      
     }, 1500);
   }
+  
 
-
-  capturarFile(event: any) {
-    let base64 = ""
-    const archivoCapturado = event.target.files[0];
-    
-    const documento = new FileReader();
-    documento.readAsDataURL(archivoCapturado);
-
-    // Verificar si el archivo es un PDF antes de agregarlo.
-    if (archivoCapturado.type !== 'application/pdf') {
-      return;
-    }
-
-    documento.onload = () => {
-      base64 = (documento.result as string).split(',')[1]
-      this.form.get('curriculum')?.setValue(base64);
-    }
+  capturarFile(event: any){
+    const archivoCapturado = event.target.files[0]
+    this.archivos.push(archivoCapturado)
+    console.log(event.target.files);
   }
 
   error() {
