@@ -26,7 +26,7 @@ export class HdvpersonaComponent implements OnInit {
   @ViewChild(MatSort) sort!: MatSort;
 
   model: Persona={
-    nombres: '',
+    nombre: '',
     apellidos: '',
     correo: '',
     telefono: '',
