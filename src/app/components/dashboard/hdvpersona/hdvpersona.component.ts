@@ -8,8 +8,6 @@ import { PersonaService } from 'src/app/services/persona.service';
 
 
 
-
-
 @Component({
   selector: 'app-hdvpersona',
   templateUrl: './hdvpersona.component.html',
@@ -43,21 +41,39 @@ export class HdvpersonaComponent implements OnInit {
     Hdv: ''
   }
  
-  constructor(private personaService: PersonaService, private router:Router){}
+  constructor(private personaService: PersonaService, private router:Router) {}
 
   ngOnInit(): void {
     this.cargarPersonas();
     this.listar();
-    
   }
 
   listar():void{
-    console.log(this.personas)
     this.personaService.listar().subscribe((data:any) => {
-      this.dataSource=new MatTableDataSource<Persona>(data.result as Persona[]);
-      console.log(data);
+      console.log(data)
+      this.dataSource=new MatTableDataSource<Persona>(data as Persona[]);
     });
   }
+
+  mostrarPDF(curriculum: string) {
+    const base64Byte = atob(curriculum);
+    const cantidadByte = new Array(base64Byte.length);
+
+    for (let index = 0; index < base64Byte.length; index++) {
+      cantidadByte[index] = base64Byte.charCodeAt(index);
+    };
+
+    const byteArray = new Uint8Array(cantidadByte);
+    const blob = new Blob([byteArray], {type: "application/pdf"})
+
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.target = "_blank";
+
+    link.click();
+
+    URL.revokeObjectURL(link.href); 
+  };
 
   cargarPersonas(){
     this.dataSource = new MatTableDataSource(this.listPersonas);
@@ -67,7 +83,6 @@ export class HdvpersonaComponent implements OnInit {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
-
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;

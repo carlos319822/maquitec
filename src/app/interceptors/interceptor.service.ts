@@ -8,24 +8,22 @@ import Swal from 'sweetalert2';
 @Injectable()
 export class InterceptorService implements HttpInterceptor {
 
-  constructor(public miServicioUser: UserService, private router: Router) {}
+  constructor(public miServicioUser: UserService, private router: Router) { }
 
-    intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<any>> {
-      if (this.miServicioUser.usuarioSesionActiva){
-        request = request.clone({
-          setHeaders: {
-            Authorization: `Bearer ${this.miServicioUser.usuarioSesionActiva.token}`
+  intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<any>> {
+    if (this.miServicioUser.usuarioSesionActiva) {
+      request = request.clone({
+        setHeaders: {
+          Authorization: `Bearer ${this.miServicioUser.usuarioSesionActiva.token}`
+        }
+      });
+    };
 
-          }
-        });
-      }
-        return next.handle(request).pipe(
-          catchError((err: HttpErrorResponse) => {
-            if (err.status === 401){
-              this.router.navigateByUrl('/dashboard');
-            }
-            return throwError(err);
-          })
-        );
-    }
-}
+    return next.handle(request).pipe(
+      catchError((err: HttpErrorResponse) => {
+        this.router.navigateByUrl('/login');
+        return throwError(err);
+      })
+    );
+  };
+};
