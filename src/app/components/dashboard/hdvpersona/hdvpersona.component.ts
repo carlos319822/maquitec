@@ -20,7 +20,7 @@ export class HdvpersonaComponent implements OnInit {
 
   displayedColumns: string[] = ['nombres', 'cargo_aspirado', 'correo', 'telefono','ciudad','fecha_registro','HdV'];
 
-  dataSource:any;
+  dataSource: any;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -52,6 +52,7 @@ export class HdvpersonaComponent implements OnInit {
     this.personaService.listar().subscribe((data:any) => {
       console.log(data)
       this.dataSource=new MatTableDataSource<Persona>(data as Persona[]);
+      this.dataSource.paginator = this.paginator;
     });
   }
 
@@ -79,7 +80,7 @@ export class HdvpersonaComponent implements OnInit {
     this.dataSource = new MatTableDataSource(this.listPersonas);
   }
 
-  ngAfterViewInit(): void {
+  ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
