@@ -53,6 +53,7 @@ export class HdvpersonaComponent implements OnInit {
       console.log(data)
       this.dataSource=new MatTableDataSource<Persona>(data as Persona[]);
       this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
     });
   }
 
