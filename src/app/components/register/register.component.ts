@@ -35,6 +35,12 @@ export class RegisterComponent {
     this.miServicioUser.register(this.loginData).subscribe((data:any) => {
       console.log(data);
 
+      this._snackBar.open('Usuario Creado', '', {
+        duration: 5000,
+        horizontalPosition: 'center',
+        verticalPosition: 'bottom'
+      })
+
       this.Loading();
       // this.router.navigate(['dashboard'])
     },err => {
