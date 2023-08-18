@@ -14,7 +14,7 @@ export class PersonaService {
   constructor(private http: HttpClient) { }
 
   listar(): Observable<Persona[]>{
-    return this.http.get<Persona[]>(`${environment.url_persona}/personas`)
+    return this.http.get<Persona[]>(`${environment.url_gateway}/personas`)
 
   }
 
