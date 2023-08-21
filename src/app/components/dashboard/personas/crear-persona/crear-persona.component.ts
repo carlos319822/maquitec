@@ -78,7 +78,7 @@ export class CrearPersonaComponent {
   guardar() {
     this.miServicio.usuario(this.form.value).subscribe({
       next: (data: any) => {
-        this._snackBar.open("Postulacion exitosa")
+        this.mensaje();
         this.router.navigate(['/dashboard/postulados'])
       },
       error: err => {

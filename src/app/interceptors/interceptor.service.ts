@@ -21,7 +21,7 @@ export class InterceptorService implements HttpInterceptor {
 
     return next.handle(request).pipe(
       catchError((err: HttpErrorResponse) => {
-        this.router.navigateByUrl('/login');
+        this.router.navigateByUrl('/dashboard');
         return throwError(err);
       })
     );
