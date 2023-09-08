@@ -17,6 +17,8 @@ import { PersonaService } from 'src/app/services/persona.service';
 })
 export class CrearPersonaComponent {
 
+  imagenCargada: any = null;
+
   modeli: Caras = {
     cargo_aspirado: '',
     experiencia: '',
@@ -126,6 +128,17 @@ export class CrearPersonaComponent {
       horizontalPosition: 'center',
       verticalPosition: 'bottom'
     })
+  }
+
+  cargarImagen(event: any) {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (e: any) => {
+        this.imagenCargada = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    }
   }
 }
 

@@ -1,29 +1,39 @@
-
-
 <div class="body">
-    <div class="login">
-        <mat-spinner *ngIf="loading" class="spinner" diameter="50"></mat-spinner>
-
-        <form *ngIf="!loading" [formGroup]="form" (ngSubmit)="login()">
+  <div class="login">
+    <mat-spinner *ngIf="loading; else elseBlock" class="spinner" diameter="50"></mat-spinner>
+    <ng-template #elseBlock>
+      <mat-card class="custom-shadow">
+        <mat-card-content>
+          <form *ngIf="!loading" [formGroup]="form" (ngSubmit)="login()">
             <img src="../../../assets/img/maquitec.png" width="50%">
-            <h1>Login</h1>
-            <mat-form-field class="ancho" appearance="fill">
-                <mat-label>Correo</mat-label>
-                <input type="text" matInput autocomplete="off" [(ngModel)]="correo" formControlName="correo">
+            <h1>Iniciar Sesión</h1>
+            <mat-form-field appearance="outline" class="width-100">
+              <mat-label>Correo</mat-label>
+              <input matInput autocomplete="off" [(ngModel)]="correo" formControlName="correo">
+              <mat-icon matSuffix>mail_outline</mat-icon>
             </mat-form-field>
-            <mat-form-field class="ancho" appearance="fill">
-                <mat-label>Contraseña</mat-label>
-                <input type="password" matInput autocomplete="off" [(ngModel)]="contrasena" formControlName="contrasena">
+            <mat-form-field appearance="outline" class="width-100">
+              <mat-label>Contraseña</mat-label>
+              <input matInput [type]="hide ? 'password' : 'text'" autocomplete="off" [(ngModel)]="contrasena"
+                formControlName="contrasena">
+              <button type="button" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                [attr.aria-pressed]="hide">
+                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+              </button>
             </mat-form-field>
+  
             <br>
-            <button type="submit" class="ancho button" mat-raised-button color="primary"
-                [disabled]="form.invalid"  >Ingresar</button>
+            <button type="submit" class="ancho button width-100" mat-raised-button color="primary"
+              [disabled]="form.invalid">Ingresar</button>
             <br>
             <br>
-            <button  class="ancho button" mat-raised-button color="accent"
-                routerLink="/register"  >Registrarse</button>  
-              
-        </form>
-        
-    </div>
+            <button class="ancho button width-100" mat-raised-button color="accent" routerLink="/register">Registrarse</button>
+  
+          </form>
+        </mat-card-content>
+      </mat-card>
+
+    </ng-template>
+
+  </div>
 </div>

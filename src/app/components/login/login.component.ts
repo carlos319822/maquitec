@@ -29,6 +29,7 @@ export class LoginComponent implements OnInit {
 
   loading = false;
 
+  hide = true;
   constructor(private fb: FormBuilder,private _snackBar: MatSnackBar, private router: Router, private miServicioUser: UserService){
     this.form = this.fb.group({
       correo: ['',Validators.required],
