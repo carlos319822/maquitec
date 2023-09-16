@@ -48,11 +48,10 @@ export class LoginComponent implements OnInit {
     }
     this.Loading();
     setTimeout(() => {
-      
+      const data = {token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6Z…UzMH0.NiIEmtzYY8OD_k3pQ8nct0WlJfXUDzCKBYezIgj2gxU', user_id: '64d9502d55362a33f2928754'}
+      this.miServicioUser.guardarDatosSesion(data);
+      this.miServicioUser._authStatus.set( AuthStatus.authenticated );
     }, 2000);
-    const data = {token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6Z…UzMH0.NiIEmtzYY8OD_k3pQ8nct0WlJfXUDzCKBYezIgj2gxU', user_id: '64d9502d55362a33f2928754'}
-    this.miServicioUser.guardarDatosSesion(data);
-    this.miServicioUser._authStatus.set( AuthStatus.authenticated );
     
     // this.miServicioUser.login(elUsuario).subscribe(data =>{
     //   this.Loading();

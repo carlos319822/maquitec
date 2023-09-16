@@ -5,6 +5,7 @@ import { InicioComponent } from './inicio/inicio.component';
 import { HdvpersonaComponent } from './hdvpersona/hdvpersona.component';
 import { CrearPersonaComponent } from './personas/crear-persona/crear-persona.component';
 import { PerfilComponent } from './personas/perfil/perfil.component';
+import { ListarComponent } from './vacante/listar/listar.component';
 
 const routes: Routes = [
   {path:'',component:DashboardComponent,
@@ -12,7 +13,8 @@ const routes: Routes = [
     {path: '', component : InicioComponent},
     { path: 'postulados',component:HdvpersonaComponent},
     { path: 'postularse',component:CrearPersonaComponent},
-    { path: 'perfil', component:PerfilComponent}
+    { path: 'perfil', component:PerfilComponent},
+    { path: 'vacantes', component:ListarComponent},
   ]}
 ];
 
