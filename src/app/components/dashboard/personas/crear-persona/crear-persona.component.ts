@@ -118,6 +118,7 @@ export class CrearPersonaComponent {
 
     documento.onload = () => {
       base64 = (documento.result as string).split(',')[1]
+      console.log(base64);
       this.form.get('curriculum')?.setValue(base64);
     }
   }
