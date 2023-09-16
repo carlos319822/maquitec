@@ -22,4 +22,12 @@
     max-height: 210px;
     height: 210px;
     overflow: scroll;
+    transition: transform 0.3s ease;
+}
+.card-height:hover{
+    transform: scale(1.05); 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+.btn-mas{
+    border-radius: 20px;
 }
