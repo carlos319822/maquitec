@@ -21,6 +21,8 @@ import { PerfilComponent } from './personas/perfil/perfil.component';
 import { ActualizarPersonaComponent } from './personas/actualizar-persona/actualizar-persona.component';
 import { CrearCertificadoComponent } from './certificados/crear-certificado/crear-certificado.component';
 import { VerCertificadoComponent } from './certificados/ver-certificado/ver-certificado.component';
+import { FormacionComponent } from './personas/formacion/formacion.component';
+import { ExperienciaComponent } from './personas/experiencia/experiencia.component';
 
 
 @NgModule({
@@ -39,6 +41,8 @@ import { VerCertificadoComponent } from './certificados/ver-certificado/ver-cert
     ActualizarPersonaComponent,
     CrearCertificadoComponent,
     VerCertificadoComponent,
+    FormacionComponent,
+    ExperienciaComponent,
   ],
   imports: [
     CommonModule,
