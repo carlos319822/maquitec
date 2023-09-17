@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import {MatExpansionModule} from '@angular/material/expansion';
+import { MatCardModule } from '@angular/material/card';
+import {MatGridListModule} from '@angular/material/grid-list';
 
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { SharedModule } from '../shared/app-routing.module';
@@ -42,7 +44,9 @@ import { VerCertificadoComponent } from './certificados/ver-certificado/ver-cert
     CommonModule,
     DashboardRoutingModule,
     SharedModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatCardModule,
+    MatGridListModule
   ]
 })
 export class DashboardModule { }

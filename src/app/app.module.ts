@@ -7,6 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 //Angular material
+import { MatCardModule } from '@angular/material/card';
 
 
 //Components
@@ -29,7 +30,7 @@ import { RegisterComponent } from './components/register/register.component';
     BrowserAnimationsModule,
     SharedModule,
     HttpClientModule,
-    
+    MatCardModule
   ],
   providers: [
     {
