@@ -12,6 +12,7 @@ import { CrearCertificadoComponent } from './certificados/crear-certificado/crea
 import { VerAlertaComponent } from './alertas/ver-alerta/ver-alerta.component';
 import { ExperienciaComponent } from './personas/experiencia/experiencia.component';
 import { FormacionComponent } from './personas/formacion/formacion.component';
+import { CrearComponent } from './vacante/crear/crear.component';
 
 const routes: Routes = [
   {path:'',component:DashboardComponent,
@@ -26,7 +27,8 @@ const routes: Routes = [
     { path: 'crear_certificado', component:CrearCertificadoComponent},
     { path: 'alertas',component:VerAlertaComponent},
     { path: 'experiencia',component:ExperienciaComponent},
-    { path: 'formacion', component:FormacionComponent}
+    { path: 'formacion', component:FormacionComponent},
+    { path: 'crear_vacante', component:CrearComponent}
   ]}
 ];
 
