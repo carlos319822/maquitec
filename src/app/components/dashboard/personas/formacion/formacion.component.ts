@@ -7,4 +7,7 @@ import { Component } from '@angular/core';
 })
 export class FormacionComponent {
 
+
+  estudio: any[] = ['Educación Basica Primaria', 'Educación Basica Secundaria', 'Bachillerato / Educacion Media', 'Universidad / Carrera Tecnica', 'Universidad / Carrera Tecnologica','Universidad / Carrera Profesional','Postgrado / Especializacion','Postgrado / Maestria','Postgrado / Doctorado', 'Otros']
+
 }

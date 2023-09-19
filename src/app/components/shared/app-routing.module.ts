@@ -23,6 +23,9 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatListModule} from '@angular/material/list';
 import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatNativeDateModule} from '@angular/material/core';
+import {MatRadioModule} from '@angular/material/radio';
 
 
 
@@ -48,7 +51,10 @@ import {MatSidenavModule} from '@angular/material/sidenav';
     MatSelectModule,
     MatMenuModule,
     MatListModule,
-    MatSidenavModule   
+    MatSidenavModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatRadioModule   
     
   ],
   exports: [
@@ -70,7 +76,10 @@ import {MatSidenavModule} from '@angular/material/sidenav';
     MatSelectModule,
     MatMenuModule,
     MatListModule,
-    MatSidenavModule
+    MatSidenavModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatRadioModule
   ]
 })
 export class SharedModule { }
