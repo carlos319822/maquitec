@@ -20,6 +20,9 @@ import {MatSortModule} from '@angular/material/sort';
 import {MatCardModule} from '@angular/material/card';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatSelectModule} from '@angular/material/select';
+import {MatMenuModule} from '@angular/material/menu';
+import {MatListModule} from '@angular/material/list';
+import {MatSidenavModule} from '@angular/material/sidenav';
 
 
 
@@ -42,7 +45,10 @@ import {MatSelectModule} from '@angular/material/select';
     MatSortModule,
     MatCardModule,
     MatGridListModule,
-    MatSelectModule   
+    MatSelectModule,
+    MatMenuModule,
+    MatListModule,
+    MatSidenavModule   
     
   ],
   exports: [
@@ -61,7 +67,10 @@ import {MatSelectModule} from '@angular/material/select';
     MatSortModule,
     MatSortModule,
     MatGridListModule,
-    MatSelectModule
+    MatSelectModule,
+    MatMenuModule,
+    MatListModule,
+    MatSidenavModule
   ]
 })
 export class SharedModule { }

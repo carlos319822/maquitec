@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { MediaMatcher } from '@angular/cdk/layout';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Route, Router } from '@angular/router';
 import { MenuService } from 'src/app/services/menu.service';
 import { UserService } from 'src/app/services/user.service';
@@ -11,7 +12,26 @@ import { UserService } from 'src/app/services/user.service';
 export class NavbarComponent implements OnInit {
 
   isLoggedIn = false;
-  constructor(private _menuService: MenuService, private miServiUser : UserService, private route : Router){}
+
+  mobileQuery: MediaQueryList;
+
+  
+
+  
+
+  private _mobileQueryListener: () => void;
+
+  constructor(private _menuService: MenuService, private miServiUser : UserService, private route : Router,changeDetectorRef: ChangeDetectorRef, media: MediaMatcher){
+    this.mobileQuery = media.matchMedia('(max-width: 600px)');
+    this._mobileQueryListener = () => changeDetectorRef.detectChanges();
+    this.mobileQuery.addListener(this._mobileQueryListener);
+  }
+
+  ngOnDestroy(): void {
+    this.mobileQuery.removeListener(this._mobileQueryListener);
+  }
+
+  shouldRun = true;
 
   ngOnInit(): void {
     

@@ -7,6 +7,11 @@ import { CrearPersonaComponent } from './personas/crear-persona/crear-persona.co
 import { PerfilComponent } from './personas/perfil/perfil.component';
 import { ListarComponent } from './vacante/listar/listar.component';
 import { PostulacionVacanteComponent } from './vacante/postulacion-vacante/postulacion-vacante.component';
+import { VerCertificadoComponent } from './certificados/ver-certificado/ver-certificado.component';
+import { CrearCertificadoComponent } from './certificados/crear-certificado/crear-certificado.component';
+import { VerAlertaComponent } from './alertas/ver-alerta/ver-alerta.component';
+import { ExperienciaComponent } from './personas/experiencia/experiencia.component';
+import { FormacionComponent } from './personas/formacion/formacion.component';
 
 const routes: Routes = [
   {path:'',component:DashboardComponent,
@@ -16,7 +21,12 @@ const routes: Routes = [
     { path: 'postularse',component:CrearPersonaComponent},
     { path: 'perfil', component:PerfilComponent},
     { path: 'vacantes', component:ListarComponent},
-    { path: 'vacante/1', component:PostulacionVacanteComponent }
+    { path: 'vacante/1', component:PostulacionVacanteComponent },
+    { path: 'ver_certificado', component:VerCertificadoComponent},
+    { path: 'crear_certificado', component:CrearCertificadoComponent},
+    { path: 'alertas',component:VerAlertaComponent},
+    { path: 'experiencia',component:ExperienciaComponent},
+    { path: 'formacion', component:FormacionComponent}
   ]}
 ];
 
