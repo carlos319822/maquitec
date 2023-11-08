@@ -22,8 +22,8 @@ export class LoginComponent implements OnInit {
     correo:'',
     contrasena:''
   }*/
-  correo:string="fake";
-  contrasena:string="fake";
+  correo:string="";
+  contrasena:string="";
 
   form: FormGroup;
 
@@ -46,22 +46,15 @@ export class LoginComponent implements OnInit {
       correo:this.correo,
       contrasena:this.contrasena
     }
-    this.Loading();
-    setTimeout(() => {
-      const data = {token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6Z…UzMH0.NiIEmtzYY8OD_k3pQ8nct0WlJfXUDzCKBYezIgj2gxU', user_id: '64d9502d55362a33f2928754'}
+    this.miServicioUser.login(elUsuario).subscribe(data =>{
+      this.Loading();
       this.miServicioUser.guardarDatosSesion(data);
       this.miServicioUser._authStatus.set( AuthStatus.authenticated );
-    }, 2000);
-    
-    // this.miServicioUser.login(elUsuario).subscribe(data =>{
-    //   this.Loading();
-    //   this.miServicioUser.guardarDatosSesion(data);
-    //   this.miServicioUser._authStatus.set( AuthStatus.authenticated );
-    // },err => {
-    //   this.error();
-    //   this.form.reset();
-    // }
-    // )
+    },err => {
+      this.error();
+      this.form.reset();
+    }
+    )
 /**
     this.miServicioUser.login(this.loginData).subscribe((data:any) => {
       console.log(data);

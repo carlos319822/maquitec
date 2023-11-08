@@ -22,6 +22,6 @@ export class PersonaService {
     return this.http.get<Persona>(`${environment.url_persona}/personas/${id}`)
   }
   usuario(infoPersona: Persona) {
-    return this.http.post<Persona>(`${environment.url_persona}/personas`,infoPersona);
+    return this.http.post<Persona>(`${environment.url_gateway}/personas`,infoPersona);
     }
 }

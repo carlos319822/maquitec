@@ -25,11 +25,6 @@ export class CrearPersonaComponent {
     Hdv: ''
   }
 
-  modelo: Forma = {
-    estudios: '',
-    estado: ''
-  }
-
   loginData = {
     nombre: '',
     apellidos: '',
