@@ -5,6 +5,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { User } from '../interfaces/user';
 import { AuthStatus } from '../interfaces/authenticacion';
+import { mergeMap } from 'rxjs/operators';
 
 
 
@@ -46,11 +47,18 @@ export class UserService {
     return this.http.post<User>(`${environment.url_gateway}/login`, infoUsuario);
   }
 
-
   register(infoUsuario: User): Observable<User> {
-    return this.http.post<User>(`${environment.url_usuarios}/usuarios`,
-      infoUsuario);
+    return this.http.post<User>(`${environment.url_usuarios}/usuarios`, infoUsuario)
+      .pipe(
+        mergeMap((registeredUser: User): Observable<User> => {
+            return this.asignar(registeredUser._id!);  
+        }));
   }
+
+  asignar(userid: String): Observable<User> {
+    return this.http.put<User>(`${environment.url_usuarios}/usuarios/${userid}/rol/64b8b82eb1151260c9038319`,{});
+  }
+ 
 
   guardarDatosSesion(datosSesion: any) {
     let sesionActual = localStorage.getItem('sesion');
