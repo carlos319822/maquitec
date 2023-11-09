@@ -22,8 +22,8 @@ export class LoginComponent implements OnInit {
     correo:'',
     contrasena:''
   }*/
-  correo:string="";
-  contrasena:string="";
+  correo:string="carlos319822@gmail.com";
+  contrasena:string="yersonesgey2012";
 
   form: FormGroup;
 
