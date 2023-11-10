@@ -1,1 +1,77 @@
-<p>crear works!</p>
+<div class="container-fluid">
+    <br>
+    <mat-toolbar>
+        <span class="example-spacer"></span>
+        <span>Creacion de Vacante</span>
+        <span class="example-spacer"></span>
+    </mat-toolbar>
+</div>
+
+<div class="modalc" #modalBack>
+    <div class="container-fluid">
+        <mat-card class="custom-shadow">
+            <mat-card-content>
+                <form [formGroup]="formularioPrincipal">
+                    <div formArrayName="infoAcademica">
+                        <div *ngFor="let infoForm of infoAcademica.controls; let i = index">
+                            <div [formGroupName]="i">
+                                <div class="form-row">
+                                    <mat-form-field appearance="outline" class="form-field">
+                                        <mat-label>NOMBRE DE LA VACANTE</mat-label>
+                                        <input matInput placeholder="Ej: Contador" formControlName="nombreVacante">
+                                    </mat-form-field>
+                                    <mat-form-field class="form-field" appearance="outline">
+                                        <mat-label>Lugar de Vacante</mat-label>
+                                        <mat-select formControlName="lugar">
+                                            <mat-option *ngFor="let item of lugar" [value]="item">
+                                                {{item}}
+                                            </mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                                <div class="form-row">
+
+                                    <mat-form-field class="form-field" appearance="outline">
+                                        <mat-label>Jornada del Empleo</mat-label>
+                                        <mat-select formControlName="jornada">
+                                            <mat-option *ngFor="let item of jornada" [value]="item">
+                                                {{item}}
+                                            </mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+
+                                    <mat-form-field class="form-field" appearance="outline">
+                                        <mat-label>Salario a Devengar</mat-label>
+                                        <mat-select formControlName="salario">
+                                            <mat-option *ngFor="let item of salario" [value]="item">
+                                                {{item}}
+                                            </mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+
+                                <div class="form-row">
+
+                                    <mat-form-field appearance="outline" class="form-field">
+                                        <mat-label>Descripcion de la Vacante</mat-label>
+                                        <input matInput placeholder="Ej: Funciones a realizar" formControlName="descripcion">
+                                    </mat-form-field>
+
+                                    <mat-form-field appearance="outline" class="form-field">
+                                        <mat-label>Requisitos</mat-label>
+                                        <input matInput placeholder="Ej: 1 año de experiencia" formControlName="requisitos">
+                                    </mat-form-field>
+                                </div>
+                                <button (click)="eliminarVacante(i)" class="btn btn-danger delete-button"
+                                    *ngIf="infoAcademica.length > 1">
+                                    <mat-icon>delete</mat-icon>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <button (click)="agregarOtraVacante()" class="btn btn-primary add-form-button">Agregar más</button>
+                </form>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>

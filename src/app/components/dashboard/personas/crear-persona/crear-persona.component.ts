@@ -19,23 +19,6 @@ export class CrearPersonaComponent {
 
   imagenCargada: any = null;
 
-  modeli: Caras = {
-    cargo_aspirado: '',
-    experiencia: '',
-    Hdv: ''
-  }
-
-  loginData = {
-    nombre: '',
-    apellidos: '',
-    correo: '',
-    telefono: '',
-    direccion: '',
-    ciudad: '',
-    estado_civil: '',
-    fecha_registro: new Date().toISOString(),
-  }
-
   estadoc: any[] = ['Soltero', 'Soltera', 'Casado', 'Casada', 'Union Libre']
   estudio: any[] = ['Bachiller', 'Tecnico', 'Tecnologo', 'Profesional', 'Curso Basico']
   estado: any[] = ['Terminado', 'En Curso']
@@ -56,8 +39,6 @@ export class CrearPersonaComponent {
       estado_civil: ['', [Validators.required]],
       cargo_aspirado: ['', [Validators.required]],
       experiencia: ['', [Validators.required]],
-      estudios: ['', [Validators.required]],
-      estado: ['', [Validators.required]],
       fecha_registro: new Date().toISOString(),
       id_usuario: JSON.parse(localStorage.getItem('sesion') || '{}')._id || '[SIN ID]',
       curriculum: ['', [Validators.required, this.validadorArchivo(3 * 1024 * 1024)]]
