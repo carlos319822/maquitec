@@ -20,6 +20,6 @@ export class FormacionService {
     return this.http.get<Formacion>(`${environment.url_gateway}/formacion/${id}`)
   }
   usuario(infoFormacion: Formacion) {
-    return this.http.post<Formacion>(`${environment.url_gateway}/formacion`,infoFormacion);
+    return this.http.post<Formacion>(`${environment.url_persona}/formacion`,infoFormacion);
     }
 }

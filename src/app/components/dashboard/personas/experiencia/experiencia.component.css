@@ -117,3 +117,7 @@ mat-grid-tile {
     text-align: center;
     margin-top: 10px;
   }
+  .button-text{
+    background-color: rgb(223, 116, 44);
+    color: #f5f5f5;
+  }
