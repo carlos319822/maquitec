@@ -55,22 +55,23 @@ export class FormacionComponent implements OnInit{
     this.infoAcademica.removeAt(index);
   }
   guardar(){
-    this.miServicio
-      .usuario(this.formularioPrincipal.value)
-      .subscribe({
-        next: (data: any) => {
-          this.mensaje('Información registrada');
-          // this.router.navigate(['/dashboard/perfil'])
-        },
-        error: err => {
-          console.log(err)
-          this.mensaje('No se pudo guardar la información')
-        },
-        complete(){
-
-        }
-      })
-    console.log(this.formularioPrincipal.value)
+    for(let item of this.formularioPrincipal.value.infoAcademica){
+      this.miServicio
+        .usuario(item)
+        .subscribe({
+          next: (data: any) => {
+            this.mensaje('Información registrada');
+          },
+          error: err => {
+            console.log(err)
+            this.mensaje('No se pudo guardar la información')
+          },
+          complete(){
+            
+          }
+        })
+      }
+    this.router.navigate(['/dashboard/perfil'])
   }
 
   mensaje(text: any) {
