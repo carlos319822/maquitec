@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
+import { VacanteService } from 'src/app/services/vacante.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-crear',
@@ -22,7 +25,7 @@ export class CrearComponent implements OnInit {
 
   formularioPrincipal: FormGroup;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private miServicio: VacanteService, private _snackBar: MatSnackBar, private router: Router) {
     this.formularioPrincipal = this.fb.group({
       infoAcademica: this.fb.array([]),
     });
@@ -59,4 +62,34 @@ export class CrearComponent implements OnInit {
     this.infoAcademica.removeAt(index);
   }
 
+  guardar(){
+    for(let item of this.formularioPrincipal.value.infoAcademica){
+      this.miServicio
+        .usuario(item)
+        .subscribe({
+          next: (data: any) => {
+            this.mensaje('Información registrada');
+          },
+          error: err => {
+            console.log(err)
+            this.mensaje('No se pudo guardar la información')
+          },
+          complete(){
+            
+          }
+        })
+      }
+    // this.router.navigate(['/dashboard/perfil'])
+  }
+
+  mensaje(text: any) {
+    setTimeout(() => {
+      this._snackBar.open(text, '', {
+        duration: 5000,
+        horizontalPosition: 'center',
+        verticalPosition: 'bottom'
+      })
+
+    }, 1500);
+  }
 }

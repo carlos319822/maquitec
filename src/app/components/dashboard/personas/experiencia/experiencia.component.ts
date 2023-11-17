@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
+import { ExperienciaService } from 'src/app/services/experiencia.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-experiencia',
@@ -17,7 +20,7 @@ export class ExperienciaComponent implements OnInit{
   }
   formularioPrincipal: FormGroup;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private miServicio: ExperienciaService, private _snackBar: MatSnackBar, private router: Router) {
     this.formularioPrincipal = this.fb.group({
       infoExperiencia: this.fb.array([]),
     });
@@ -49,5 +52,36 @@ export class ExperienciaComponent implements OnInit{
 
   eliminarinfoExperiencia(index: number) {
     this.infoExperiencia.removeAt(index);
+  }
+
+  guardar(){
+    for(let item of this.formularioPrincipal.value.infoExperiencia){
+      this.miServicio
+        .usuario(item)
+        .subscribe({
+          next: (data: any) => {
+            this.mensaje('Información registrada');
+          },
+          error: err => {
+            console.log(err)
+            this.mensaje('No se pudo guardar la información')
+          },
+          complete(){
+            
+          }
+        })
+      }
+    // this.router.navigate(['/dashboard/perfil'])
+  }
+
+  mensaje(text: any) {
+    setTimeout(() => {
+      this._snackBar.open(text, '', {
+        duration: 5000,
+        horizontalPosition: 'center',
+        verticalPosition: 'bottom'
+      })
+
+    }, 1500);
   }
 }

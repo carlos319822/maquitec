@@ -11,7 +11,7 @@
   <div class="container-fluid">
     <mat-card class="custom-shadow">
       <mat-card-content>
-        <form [formGroup]="formularioPrincipal">
+        <form [formGroup]="formularioPrincipal" (ngSubmit)="guardar()">
           <div formArrayName="infoExperiencia">
             <div *ngFor="let infoForm of infoExperiencia.controls; let i = index">
               <div [formGroupName]="i">
@@ -44,8 +44,8 @@
                   </mat-radio-group>
                   <mat-form-field color="accent" class="form-field" appearance="outline">
                     <mat-label>Fecha de ingreso</mat-label>
-                    <input matInput [matDatepicker]="picker1">
-                    <mat-datepicker-toggle matIconSuffix [for]="picker1" formControlName="fecha_ingreso"></mat-datepicker-toggle>
+                    <input matInput [matDatepicker]="picker1" formControlName="fecha_ingreso">
+                    <mat-datepicker-toggle matIconSuffix [for]="picker1"></mat-datepicker-toggle>
                     <mat-datepicker #picker1></mat-datepicker>
                   </mat-form-field>
                   <mat-form-field color="accent" class="form-field" appearance="outline">
@@ -64,7 +64,7 @@
           <button (click)="agregarinfoExperiencia()" class="btn btn-primary btn-sm">Agregar más</button>
           <div class="center">
             <div style="width: 20%;" class="d-grid gap-2">
-              <button class="btn button-text" type="submit">Guardar</button>  
+              <button class="btn button-text" type="submit" [disabled]="formularioPrincipal.invalid">Guardar</button>  
             </div>
           </div>
         </form>

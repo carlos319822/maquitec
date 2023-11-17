@@ -71,7 +71,7 @@ export class FormacionComponent implements OnInit{
           }
         })
       }
-    this.router.navigate(['/dashboard/perfil'])
+    // this.router.navigate(['/dashboard/perfil'])
   }
 
   mensaje(text: any) {
